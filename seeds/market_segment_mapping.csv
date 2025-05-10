@@ -1,0 +1,6 @@
+market_segment,display_name,vertical,priority
+BUILDING,Construction,Industrial,High
+AUTOMOBILE,Automotive,Transportation,Medium
+MACHINERY,Industrial Machinery,Manufacturing,High
+HOUSEHOLD,Household Goods,Consumer,Medium
+FURNITURE,Furniture,Consumer,Low

@@ -1,0 +1,156 @@
+version: 2
+
+sources:
+  - name: tpch
+    database: snowflake_sample_data  # Snowflake's sample data database
+    schema: tpch_sf1                # Scale factor 1 (can be adjusted based on needs)
+    description: TPC-H benchmark data representing a business model for a product distributor
+    tables:
+      - name: customer
+        description: Customer information
+        columns:
+          - name: c_custkey
+            description: Primary key for customer
+            tests:
+              - unique
+              - not_null
+          - name: c_name
+            description: Customer name
+          - name: c_address
+            description: Customer address
+          - name: c_nationkey
+            description: Foreign key to nation table
+            tests:
+              - not_null
+              - relationships:
+                  to: source('tpch', 'nation')
+                  field: n_nationkey
+          - name: c_phone
+            description: Phone number
+          - name: c_acctbal
+            description: Account balance
+          - name: c_mktsegment
+            description: Market segment
+            tests:
+              - accepted_values:
+                  values: [BUILDING, AUTOMOBILE, MACHINERY, HOUSEHOLD, FURNITURE]
+          - name: c_comment
+            description: Comment
+        freshness:
+          warn_after: {count: 24, period: hour}
+          error_after: {count: 48, period: hour}
+        loaded_at_field: current_timestamp  # Use appropriate loaded_at field if available
+
+      - name: orders
+        description: Customer orders
+        columns:
+          - name: o_orderkey
+            description: Primary key for orders
+            tests:
+              - unique
+              - not_null
+          - name: o_custkey
+            description: Foreign key to customer table
+            tests:
+              - not_null
+              - relationships:
+                  to: source('tpch', 'customer')
+                  field: c_custkey
+          - name: o_orderstatus
+            description: Order status
+            tests:
+              - accepted_values:
+                  values: [O, F, P]        # Open, Fulfilled, Processing
+          - name: o_totalprice
+            description: Total price of the order
+          - name: o_orderdate
+            description: Date the order was placed
+          - name: o_orderpriority
+            description: Priority of the order
+          - name: o_clerk
+            description: Clerk who processed the order
+          - name: o_shippriority
+            description: Shipping priority
+          - name: o_comment
+            description: Comment
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
+        loaded_at_field: current_timestamp
+
+      - name: lineitem
+        description: Line items for each order
+        columns:
+          - name: l_orderkey
+            description: Foreign key to orders table
+            tests:
+              - not_null
+              - relationships:
+                  to: source('tpch', 'orders')
+                  field: o_orderkey
+          - name: l_partkey
+            description: Foreign key to part table
+          - name: l_suppkey
+            description: Foreign key to supplier table
+          - name: l_linenumber
+            description: Line number within the order
+          - name: l_quantity
+            description: Quantity ordered
+          - name: l_extendedprice
+            description: Extended price (quantity * price)
+          - name: l_discount
+            description: Discount percentage
+          - name: l_tax
+            description: Tax percentage
+          - name: l_returnflag
+            description: Return flag
+          - name: l_linestatus
+            description: Line item status
+          - name: l_shipdate
+            description: Date shipped
+          - name: l_commitdate
+            description: Date committed
+          - name: l_receiptdate
+            description: Date received
+          - name: l_shipinstruct
+            description: Shipping instructions
+          - name: l_shipmode
+            description: Shipping mode
+          - name: l_comment
+            description: Comment
+        freshness:
+          warn_after: {count: 12, period: hour}
+          error_after: {count: 24, period: hour}
+        loaded_at_field: current_timestamp
+
+      - name: nation
+        description: Nation information
+        columns:
+          - name: n_nationkey
+            description: Primary key for nation
+            tests:
+              - unique
+              - not_null
+          - name: n_name
+            description: Nation name
+          - name: n_regionkey
+            description: Foreign key to region table
+            tests:
+              - not_null
+              - relationships:
+                  to: source('tpch', 'region')
+                  field: r_regionkey
+          - name: n_comment
+            description: Comment
+      - name: region
+        description: Region information
+        columns:
+          - name: r_regionkey
+            description: Primary key for region
+            tests:
+              - unique
+              - not_null
+          - name: r_name
+            description: Region name
+          - name: r_comment
+            description: Comment

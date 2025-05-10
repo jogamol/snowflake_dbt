@@ -1,0 +1,13 @@
+version: 1
+
+seeds:
+  - name: market_segment_mapping
+    description: "Mapping of market segments to their display names and verticals."
+    docs:
+      show: true
+    config:
+      column_types:
+        market_segment: varchar(50)
+        display_name: varchar(50)
+        vertical: varchar(50)
+        priority: varchar(50)

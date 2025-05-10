@@ -1,4 +1,8 @@
 logs/
 venv/
+target/
+dbt_packages/
 .idea/
 .env
+edr_target/
+package-lock.yml

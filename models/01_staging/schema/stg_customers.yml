@@ -1,0 +1,28 @@
+version: 2
+models:
+  - name: stg_customers
+    columns:
+      - name: CUSTOMER_ID
+        description: ''
+      - name: CUSTOMER_NAME
+        description: ''
+      - name: ADDRESS
+        description: ''
+      - name: NATION_ID
+        description: ''
+      - name: PHONE
+        description: ''
+      - name: ACCOUNT_BALANCE
+        description: ''
+      - name: MARKET_SEGMENT
+        description: ''
+      - name: COMMENT
+        description: ''
+      - name: VALID_FROM
+        description: ''
+      - name: VALID_TO
+        description: ''
+      - name: IS_CURRENT
+        description: ''
+      - name: DBT_RUN_ID
+        description: ''

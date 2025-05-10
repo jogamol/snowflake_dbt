@@ -1,0 +1,15 @@
+[sqlfluff]
+templater = dbt
+dialect = snowflake
+exclude_rules = L031, L045, L025, L034, L043, ST09, AL09, AM03
+large_file_skip_byte_limit = 0
+
+#[sqlfluff:rules:L016]
+max_line_length = 120
+
+#[sqlfluff:templater:dbt]
+#project_dir = ./
+#profiles_dir = ./
+
+[sqlfluff:templater:jinja:context]
+some_field=nothing_interesting

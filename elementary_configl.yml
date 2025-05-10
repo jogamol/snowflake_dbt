@@ -1,0 +1,9 @@
+tests:
+  automatic_anomaly_detection:
+    volume_anomalies:
+      enabled: true
+      severity: warn
+
+    column_anomalies:
+      enabled: true
+      severity: warn

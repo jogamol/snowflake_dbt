@@ -3,12 +3,6 @@
 PYTHON ?= python3
 VENV_NAME ?= venv
 
-# Load variables from .env file (if it exists)
-ifneq (,$(wildcard .env))
-    include .env
-    export
-endif
-
 .PHONY: venv install lint fmt clean info dbt-run dbt-test dbt-debug
 
 venv:
@@ -20,6 +14,11 @@ venv:
 	@echo "Virtual environment created and requirements installed."
 	@echo
 	@echo "Use 'source $(VENV_NAME)/bin/activate' to activate your virtualenv"
+
+install: venv
+	@echo "Activating virtual environment..."
+	@bash --rcfile setup_venv.sh
+
 
 lint: venv
 	$(VENV_NAME)/bin/sqlfluff lint models/

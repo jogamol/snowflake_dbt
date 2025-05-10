@@ -1,0 +1,40 @@
+version: 2
+models:
+  - name: stg_lineitems
+    columns:
+      - name: ORDER_ID
+        description: ''
+      - name: PART_ID
+        description: ''
+      - name: SUPPLIER_ID
+        description: ''
+      - name: LINE_NUMBER
+        description: ''
+      - name: QUANTITY
+        description: ''
+      - name: EXTENDED_PRICE
+        description: ''
+      - name: DISCOUNT
+        description: ''
+      - name: TAX
+        description: ''
+      - name: RETURN_FLAG
+        description: ''
+      - name: LINE_STATUS
+        description: ''
+      - name: SHIP_DATE
+        description: ''
+      - name: COMMIT_DATE
+        description: ''
+      - name: RECEIPT_DATE
+        description: ''
+      - name: SHIP_INSTRUCTIONS
+        description: ''
+      - name: SHIP_MODE
+        description: ''
+      - name: COMMENT
+        description: ''
+      - name: NET_ITEM_PRICE
+        description: ''
+      - name: TOTAL_ITEM_PRICE
+        description: ''

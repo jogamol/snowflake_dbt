@@ -1,0 +1,22 @@
+version: 2
+models:
+  - name: stg_orders
+    columns:
+      - name: ORDER_ID
+        description: ''
+      - name: CUSTOMER_ID
+        description: ''
+      - name: ORDER_STATUS
+        description: ''
+      - name: TOTAL_PRICE
+        description: ''
+      - name: ORDER_DATE
+        description: ''
+      - name: ORDER_PRIORITY
+        description: ''
+      - name: CLERK
+        description: ''
+      - name: SHIP_PRIORITY
+        description: ''
+      - name: COMMENT
+        description: ''

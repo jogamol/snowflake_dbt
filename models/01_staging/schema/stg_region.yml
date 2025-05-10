@@ -1,0 +1,10 @@
+version: 2
+models:
+  - name: stg_region
+    columns:
+      - name: REGION_ID
+        description: ''
+      - name: REGION_NAME
+        description: ''
+      - name: COMMENT
+        description: ''
