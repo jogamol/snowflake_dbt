@@ -1,0 +1,48 @@
+version: 2
+models:
+  - name: fct_orders
+    description: Fact table containing order transactions and their metrics
+    columns:
+      - name: order_key
+        description: Surrogate key for the order
+        meta:
+          type: primary_key
+      - name: ORDER_ID
+        description: ''
+      - name: customer_key
+        description: Foreign key to customer dimension
+        meta:
+          type: foreign_key
+          references:
+            - model: dim_customers_scd2
+              column: customer_key
+      - name: order_date
+        description: Date when the order was placed
+        meta:
+          type: date
+      - name: ORDER_STATUS
+        description: ''
+      - name: LINE_ITEM_COUNT
+        description: ''
+      - name: TOTAL_QUANTITY
+        description: ''
+      - name: TOTAL_EXTENDED_PRICE
+        description: ''
+      - name: TOTAL_DISCOUNT_AMOUNT
+        description: ''
+      - name: total_net_price
+        description: Total price of the order after discounts but before taxes
+        meta:
+          type: money
+      - name: TOTAL_PRICE_WITH_TAX
+        description: ''
+      - name: FIRST_SHIP_DATE
+        description: ''
+      - name: LAST_SHIP_DATE
+        description: ''
+      - name: FIRST_RECEIPT_DATE
+        description: ''
+      - name: LAST_RECEIPT_DATE
+        description: ''
+      - name: RETURN_COUNT
+        description: ''

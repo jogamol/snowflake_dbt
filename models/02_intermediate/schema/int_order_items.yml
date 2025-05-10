@@ -1,0 +1,34 @@
+version: 2
+models:
+  - name: int_order_items
+    columns:
+      - name: ORDER_ID
+        description: ''
+      - name: CUSTOMER_ID
+        description: ''
+      - name: ORDER_DATE
+        description: ''
+      - name: ORDER_STATUS
+        description: ''
+      - name: ORDER_TOTAL_PRICE
+        description: ''
+      - name: LINE_NUMBER
+        description: ''
+      - name: PART_ID
+        description: ''
+      - name: QUANTITY
+        description: ''
+      - name: EXTENDED_PRICE
+        description: ''
+      - name: DISCOUNT
+        description: ''
+      - name: NET_ITEM_PRICE
+        description: ''
+      - name: TOTAL_ITEM_PRICE
+        description: ''
+      - name: SHIP_DATE
+        description: ''
+      - name: RECEIPT_DATE
+        description: ''
+      - name: RETURN_FLAG
+        description: ''

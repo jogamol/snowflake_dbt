@@ -1,0 +1,34 @@
+version: 2
+models:
+  - name: dim_customers_scd2
+    columns:
+      - name: CUSTOMER_KEY
+        description: ''
+      - name: CUSTOMER_ID
+        description: ''
+      - name: CUSTOMER_NAME
+        description: ''
+      - name: ADDRESS
+        description: ''
+      - name: PHONE
+        description: ''
+      - name: ACCOUNT_BALANCE
+        description: ''
+      - name: MARKET_SEGMENT
+        description: ''
+      - name: NATION_ID
+        description: ''
+      - name: NATION_NAME
+        description: ''
+      - name: REGION_ID
+        description: ''
+      - name: REGION_NAME
+        description: ''
+      - name: VALID_FROM
+        description: ''
+      - name: VALID_TO
+        description: ''
+      - name: IS_CURRENT
+        description: ''
+      - name: DBT_RUN_ID
+        description: ''

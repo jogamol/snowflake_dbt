@@ -1,0 +1,87 @@
+version: 2
+models:
+  - name: mart_customer_360
+    description: >-
+      A comprehensive 360-degree view of customers, including profile information, purchase history, and
+      derived metrics
+    columns:
+      - name: customer_key
+        description: Surrogate key for the customer dimension
+        meta:
+          type: primary_key
+          references:
+            - model: dim_customers_scd2
+              column: customer_key
+      - name: customer_id
+        description: Natural key for the customer from source system
+        meta:
+          type: business_key
+      - name: customer_name
+        description: Full name of the customer
+      - name: ADDRESS
+        description: ''
+      - name: PHONE
+        description: ''
+      - name: ACCOUNT_BALANCE
+        description: ''
+      - name: market_segment
+        description: Market segment the customer belongs to
+      - name: nation_name
+        description: Nation where the customer is located
+      - name: region_name
+        description: Region where the customer is located
+      - name: TOTAL_ORDERS
+        description: ''
+      - name: lifetime_value
+        description: Total monetary value of all orders placed by the customer
+        meta:
+          type: money
+      - name: first_order_date
+        description: Date of the customer's first order
+        meta:
+          type: date
+      - name: most_recent_order_date
+        description: Date of the customer's most recent order
+        meta:
+          type: date
+      - name: customer_tenure_days
+        description: Number of days between first and most recent order
+        meta:
+          type: integer
+      - name: TOTAL_RETURNS
+        description: ''
+      - name: RECENCY
+        description: ''
+      - name: FREQUENCY
+        description: ''
+      - name: MONETARY
+        description: ''
+      - name: customer_segment
+        description: Segment classification based on customer behavior and value
+        meta:
+          values:
+            - High Value
+            - Mid Value
+            - Low Value
+            - At Risk
+            - Inactive
+      - name: health_score
+        description: Score from 0-100 indicating the overall health of the customer relationship
+        meta:
+          type: score
+          interpretation: Higher scores indicate healthier customer relationships
+      - name: ORDER_COUNT
+        description: ''
+      - name: TOTAL_SPENT
+        description: ''
+      - name: AVG_ORDER_VALUE
+        description: ''
+      - name: RETURN_RATE
+        description: ''
+      - name: INDUSTRY_VERTICAL
+        description: ''
+      - name: churn_probability
+        description: Probability (0-1) that the customer will churn in the near future
+        meta:
+          type: probability
+          interpretation: Higher values indicate higher likelihood of churn

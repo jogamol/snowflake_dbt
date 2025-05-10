@@ -1,0 +1,14 @@
+version: 2
+models:
+  - name: dim_geography
+    columns:
+      - name: GEO_KEY
+        description: ''
+      - name: NATION_ID
+        description: ''
+      - name: NATION_NAME
+        description: ''
+      - name: REGION_ID
+        description: ''
+      - name: REGION_NAME
+        description: ''

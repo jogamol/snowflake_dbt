@@ -1,0 +1,42 @@
+version: 2
+models:
+  - name: fct_customer_value
+    columns:
+      - name: CUSTOMER_ID
+        description: ''
+      - name: CUSTOMER_NAME
+        description: ''
+      - name: MARKET_SEGMENT
+        description: ''
+      - name: NATION_NAME
+        description: ''
+      - name: REGION_NAME
+        description: ''
+      - name: TOTAL_ORDERS
+        description: ''
+      - name: LIFETIME_VALUE
+        description: ''
+      - name: FIRST_ORDER_DATE
+        description: ''
+      - name: MOST_RECENT_ORDER_DATE
+        description: ''
+      - name: CUSTOMER_TENURE_DAYS
+        description: ''
+      - name: TOTAL_RETURNS
+        description: ''
+      - name: RECENCY
+        description: ''
+      - name: FREQUENCY
+        description: ''
+      - name: MONETARY
+        description: ''
+      - name: CUSTOMER_SEGMENT
+        description: ''
+      - name: HEALTH_SCORE
+        description: ''
+      - name: VALID_FROM
+        description: ''
+      - name: VALID_TO
+        description: ''
+      - name: IS_CURRENT
+        description: ''

@@ -1,0 +1,6 @@
+dbt-core==1.9.4
+dbt-snowflake==1.9.4
+sqlfluff==3.4.0
+sqlfluff-templater-dbt==3.4.0
+dbt-osmosis==1.1.17
+elementary-data[snowflake]==0.18.1
