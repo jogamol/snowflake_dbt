@@ -19,8 +19,8 @@ install: venv
 	@echo "Activating virtual environment..."
 	@bash --rcfile setup_venv.sh
 
-
-lint: venv
+lint:
+	@echo "Running SQLFluff linting..."
 	$(VENV_NAME)/bin/sqlfluff lint models/
 
 clean:
