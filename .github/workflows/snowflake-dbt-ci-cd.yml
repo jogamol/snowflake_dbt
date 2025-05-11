@@ -35,7 +35,7 @@ jobs:
         SNOWFLAKE_CI_WAREHOUSE: ${{ secrets.SNOWFLAKE_CI_WAREHOUSE }}
         SNOWFLAKE_CI_PREP_DATABASE: ${{ secrets.SNOWFLAKE_CI_PREP_DATABASE }}
         SNOWFLAKE_CI_SCHEMA: ${{ secrets.SNOWFLAKE_CI_SCHEMA }}
-        SNOWFLAKE_CI_ROLE: ${{ secrets.SNOWFLAKE_CI_ROLE }}
+        SNOWFLAKE_CI_TRANSFORM_ROLE: ${{ secrets.SNOWFLAKE_CI_TRANSFORM_ROLE }}
 
     - name: Run dbt seed and tests
       run: |
@@ -48,7 +48,7 @@ jobs:
         SNOWFLAKE_CI_WAREHOUSE: ${{ secrets.SNOWFLAKE_CI_WAREHOUSE }}
         SNOWFLAKE_CI_PREP_DATABASE: ${{ secrets.SNOWFLAKE_CI_PREP_DATABASE }}
         SNOWFLAKE_CI_SCHEMA: ${{ secrets.SNOWFLAKE_CI_SCHEMA }}
-        SNOWFLAKE_CI_ROLE: ${{ secrets.SNOWFLAKE_CI_ROLE }}
+        SNOWFLAKE_CI_TRANSFORM_ROLE: ${{ secrets.SNOWFLAKE_CI_TRANSFORM_ROLE }}
 
   dbt-deploy:
     needs: dbt-test
@@ -80,4 +80,4 @@ jobs:
         SNOWFLAKE_CI_WAREHOUSE: ${{ secrets.SNOWFLAKE_CI_WAREHOUSE }}
         SNOWFLAKE_CI_PREP_DATABASE: ${{ secrets.SNOWFLAKE_CI_PREP_DATABASE }}
         SNOWFLAKE_CI_SCHEMA: ${{ secrets.SNOWFLAKE_CI_SCHEMA }}
-        SNOWFLAKE_CI_ROLE: ${{ secrets.SNOWFLAKE_CI_ROLE }}
+        SNOWFLAKE_CI_TRANSFORM_ROLE: ${{ secrets.SNOWFLAKE_CI_TRANSFORM_ROLE }}
