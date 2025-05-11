@@ -9,6 +9,7 @@ on:
 jobs:
   dbt-test:
     runs-on: ubuntu-latest
+    environment: snowflake_dbt
 
     steps:
     - uses: actions/checkout@v4
