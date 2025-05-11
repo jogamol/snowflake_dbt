@@ -15,13 +15,13 @@ snowflake_dbt:
     ci:
       type: snowflake
       threads: "{{ env_var('DBT_THREADS', 16) }}"
-      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
-      user: "{{ env_var('SNOWFLAKE_USER') }}"
-      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
-      database: "{{ env_var('SNOWFLAKE_PREP_DATABASE_CI') }}"
-      role: "{{ env_var('SNOWFLAKE_TRANSFORM_ROLE') }}"
-      warehouse: "{{ env_var('SNOWFLAKE_TRANSFORM_WAREHOUSE') }}"
-      schema: "{{ env_var('SNOWFLAKE_PREPARATION_SCHEMA') }}"
+      account: "{{ env_var('SNOWFLAKE_CI_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_CI_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_CI_PASSWORD') }}"
+      database: "{{ env_var('SNOWFLAKE_CI_PREP_DATABASE') }}"
+      role: "{{ env_var('SNOWFLAKE_CI_TRANSFORM_ROLE') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_CI_WAREHOUSE') }}"
+      schema: "{{ env_var('SNOWFLAKE_CI_SCHEMA') }}"
 
 elementary:
   target: elementary
