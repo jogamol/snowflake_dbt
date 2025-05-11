@@ -1,86 +1,83 @@
-# .github/workflows/dbt-ci-cd.yml
 name: Snowflake dbt CI/CD Pipeline
 
 on:
-  push:
-    branches: [ main ]
+#  push:
+#    branches: [ main ]
   pull_request:
     branches: [ main ]
 
 jobs:
   dbt-test:
     runs-on: ubuntu-latest
+    environment: snowflake_dbt
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.10'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install dbt-snowflake dbt-utils elementary-data
+        pip install -r requirements.txt
         dbt deps
 
     - name: Run dbt compile
       run: |
-        dbt compile --profiles-dir ./profiles
+        dbt compile --profiles-dir ./profiles --target ci
       env:
-        SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-        SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-        SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-        SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-        SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
-        SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+        SNOWFLAKE_CI_ACCOUNT: ${{ secrets.SNOWFLAKE_CI_ACCOUNT }}
+        SNOWFLAKE_CI_USER: ${{ secrets.SNOWFLAKE_CI_USER }}
+        SNOWFLAKE_CI_PASSWORD: ${{ secrets.SNOWFLAKE_CI_PASSWORD }}
+        SNOWFLAKE_CI_WAREHOUSE: ${{ secrets.SNOWFLAKE_CI_WAREHOUSE }}
+        SNOWFLAKE_CI_PREP_DATABASE: ${{ secrets.SNOWFLAKE_CI_PREP_DATABASE }}
+        SNOWFLAKE_CI_SCHEMA: ${{ secrets.SNOWFLAKE_CI_SCHEMA }}
+        SNOWFLAKE_CI_TRANSFORM_ROLE: ${{ secrets.SNOWFLAKE_CI_TRANSFORM_ROLE }}
 
-    - name: Run dbt tests
+    - name: Run dbt seed and tests
       run: |
-        dbt test --profiles-dir ./profiles
+        dbt seed --profiles-dir ./profiles --target ci
+        dbt test --profiles-dir ./profiles --target ci
       env:
-        SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-        SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-        SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-        SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-        SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
-        SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
+        SNOWFLAKE_CI_ACCOUNT: ${{ secrets.SNOWFLAKE_CI_ACCOUNT }}
+        SNOWFLAKE_CI_USER: ${{ secrets.SNOWFLAKE_CI_USER }}
+        SNOWFLAKE_CI_PASSWORD: ${{ secrets.SNOWFLAKE_CI_PASSWORD }}
+        SNOWFLAKE_CI_WAREHOUSE: ${{ secrets.SNOWFLAKE_CI_WAREHOUSE }}
+        SNOWFLAKE_CI_PREP_DATABASE: ${{ secrets.SNOWFLAKE_CI_PREP_DATABASE }}
+        SNOWFLAKE_CI_SCHEMA: ${{ secrets.SNOWFLAKE_CI_SCHEMA }}
+        SNOWFLAKE_CI_TRANSFORM_ROLE: ${{ secrets.SNOWFLAKE_CI_TRANSFORM_ROLE }}
 
   dbt-deploy:
     needs: dbt-test
     if: github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    environment: snowflake_dbt
 
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
 
     - name: Set up Python
       uses: actions/setup-python@v4
       with:
-        python-version: '3.9'
+        python-version: '3.10'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
-        pip install dbt-snowflake dbt-utils elementary-data
+        pip install -r requirements.txt
         dbt deps
 
     - name: Deploy dbt models
       run: |
-        dbt run --profiles-dir ./profiles
+        dbt run --profiles-dir ./profiles --target ci
       env:
-        SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-        SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-        SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-        SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-        SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-        SNOWFLAKE_SCHEMA: ${{ secrets.SNOWFLAKE_SCHEMA }}
-        SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-
-    - name: Generate and upload documentation
-      run: |
-        dbt docs generate --profiles-dir ./profiles
-        # Commands to upload documentation to your documentation hosting
+        SNOWFLAKE_CI_ACCOUNT: ${{ secrets.SNOWFLAKE_CI_ACCOUNT }}
+        SNOWFLAKE_CI_USER: ${{ secrets.SNOWFLAKE_CI_USER }}
+        SNOWFLAKE_CI_PASSWORD: ${{ secrets.SNOWFLAKE_CI_PASSWORD }}
+        SNOWFLAKE_CI_WAREHOUSE: ${{ secrets.SNOWFLAKE_CI_WAREHOUSE }}
+        SNOWFLAKE_CI_PREP_DATABASE: ${{ secrets.SNOWFLAKE_CI_PREP_DATABASE }}
+        SNOWFLAKE_CI_SCHEMA: ${{ secrets.SNOWFLAKE_CI_SCHEMA }}
+        SNOWFLAKE_CI_TRANSFORM_ROLE: ${{ secrets.SNOWFLAKE_CI_TRANSFORM_ROLE }}

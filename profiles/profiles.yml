@@ -3,7 +3,7 @@ snowflake_dbt:
   outputs:
     prod:
       type: snowflake
-      threads: "{{ env_var('GITLAB_DBT_THREADS', 32) }}"
+      threads: "{{ env_var('DBT_THREADS', 32) }}"
       account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
       user: "{{ env_var('SNOWFLAKE_USER') }}"
       password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
@@ -14,21 +14,21 @@ snowflake_dbt:
       client_session_keep_alive: True
     ci:
       type: snowflake
-      threads: "{{ env_var('GITLAB_DBT_THREADS', 16) }}"
-      account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
-      user: "{{ env_var('SNOWFLAKE_USER') }}"
-      password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
-      database: "{{ env_var('SNOWFLAKE_PREP_DATABASE_CI') }}"
-      role: "{{ env_var('SNOWFLAKE_TRANSFORM_ROLE') }}"
-      warehouse: "{{ env_var('SNOWFLAKE_TRANSFORM_WAREHOUSE') }}"
-      schema: "{{ env_var('SNOWFLAKE_PREPARATION_SCHEMA') }}"
+      threads: "{{ env_var('DBT_THREADS', 16) }}"
+      account: "{{ env_var('SNOWFLAKE_CI_ACCOUNT') }}"
+      user: "{{ env_var('SNOWFLAKE_CI_USER') }}"
+      password: "{{ env_var('SNOWFLAKE_CI_PASSWORD') }}"
+      database: "{{ env_var('SNOWFLAKE_CI_PREP_DATABASE') }}"
+      role: "{{ env_var('SNOWFLAKE_CI_TRANSFORM_ROLE') }}"
+      warehouse: "{{ env_var('SNOWFLAKE_CI_WAREHOUSE') }}"
+      schema: "{{ env_var('SNOWFLAKE_CI_SCHEMA') }}"
 
 elementary:
   target: elementary
   outputs:
     elementary:
       type: snowflake
-      threads: "{{ env_var('GITLAB_DBT_THREADS', 16) }}"
+      threads: "{{ env_var('DBT_THREADS', 16) }}"
       account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
       user: "{{ env_var('SNOWFLAKE_USER') }}"
       password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
