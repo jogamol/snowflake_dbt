@@ -47,10 +47,6 @@ models:
     03_mart:
       +materialized: table
       +schema: mart
-    # Python models
-    python_models:
-      +materialized: table
-      +schema: python
     elementary:
       +schema: elementary
 
