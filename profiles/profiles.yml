@@ -3,7 +3,7 @@ snowflake_dbt:
   outputs:
     prod:
       type: snowflake
-      threads: "{{ env_var('GITLAB_DBT_THREADS', 32) }}"
+      threads: "{{ env_var('DBT_THREADS', 32) }}"
       account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
       user: "{{ env_var('SNOWFLAKE_USER') }}"
       password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
@@ -14,7 +14,7 @@ snowflake_dbt:
       client_session_keep_alive: True
     ci:
       type: snowflake
-      threads: "{{ env_var('GITLAB_DBT_THREADS', 16) }}"
+      threads: "{{ env_var('DBT_THREADS', 16) }}"
       account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
       user: "{{ env_var('SNOWFLAKE_USER') }}"
       password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
@@ -28,7 +28,7 @@ elementary:
   outputs:
     elementary:
       type: snowflake
-      threads: "{{ env_var('GITLAB_DBT_THREADS', 16) }}"
+      threads: "{{ env_var('DBT_THREADS', 16) }}"
       account: "{{ env_var('SNOWFLAKE_ACCOUNT') }}"
       user: "{{ env_var('SNOWFLAKE_USER') }}"
       password: "{{ env_var('SNOWFLAKE_PASSWORD') }}"
